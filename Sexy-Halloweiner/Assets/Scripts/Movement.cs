@@ -5,12 +5,12 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float moveSpeed = 1.0f;
-    public Rigidbody2D rigidbody;
+    public new Rigidbody2D rigidbody;
     public Vector2 movement; 
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = this.GetComponent<Rigidbody2D>();
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
