@@ -7,8 +7,11 @@ public class KarkkiCollect : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public Sprite newSprite;
-    public int karkit;
+    private int karkit = 20;
     public Text karkkiText;
+    public int karkkiPerSec = 5;
+    bool poistaKarkki = true;
+    bool collectable = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,16 +21,36 @@ public class KarkkiCollect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if(poistaKarkki == true)
         {
-            ChangeSprite();
+            StartCoroutine(KarkkiHimo());
         }
     }
 
-    void ChangeSprite()
+    void CollectKarkki()
     {
-        spriteRenderer.sprite = newSprite;
-        karkit += 5;
-        karkkiText.text = karkit.ToString();
+        if(collectable == true)
+        {
+            spriteRenderer.sprite = newSprite;
+            karkit += 5;
+            karkkiText.text = karkit.ToString();
+            collectable = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Enter");
+        CollectKarkki();
+    }
+
+    private IEnumerator KarkkiHimo()
+    {
+        poistaKarkki = false;
+        Debug.Log("Tick! Tick! Tick!");
+        karkit -= 1;
+        karkkiText.text = (karkit).ToString();
+        yield return new WaitForSeconds(karkkiPerSec);
+        poistaKarkki = true;
     }
 }
