@@ -32,17 +32,28 @@ public class BuyItem : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D other)
     {
         GameObject gameController = GameObject.Find("GameController");
         GameControllerScript controllScript = gameController.GetComponent<GameControllerScript>();
         Debug.Log("player is in the buy zone");
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space)) 
         {
             Debug.Log("Pressed E");
-            Destroy(gameObject);
-            controllScript.karkit -= 20;
-            SpeedBoost();
+            
+            if(gameObject.CompareTag("SpeedBoost") && controllScript.karkit > 20)
+            {
+                controllScript.karkit -= 20;
+                SpeedBoost();
+                Destroy(gameObject);
+            }
+            else if(gameObject.CompareTag("ForceField") && controllScript.karkit > 40)
+            {
+                Debug.Log("ForceField");
+                controllScript.karkit -= 40;
+                ForceField();
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -53,5 +64,8 @@ public class BuyItem : MonoBehaviour
         movementScript.moveSpeed = upgradedMoveSpeed;
     }
 
-
+    private void ForceField()
+    {
+        
+    }
 }

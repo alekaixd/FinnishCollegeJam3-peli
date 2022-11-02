@@ -38,8 +38,8 @@ public class KarkkiCollect : MonoBehaviour
         GameObject gameController = GameObject.Find("GameController");
         GameControllerScript controllScript = gameController.GetComponent<GameControllerScript>();
         spriteRenderer.sprite = newSprite;
-        Debug.Log("+5 karkkia");
-        controllScript.karkit += 5;
+        Debug.Log("+10 karkkia");
+        controllScript.karkit += 10;
         collectable = false;
         return controllScript.karkit;
 
