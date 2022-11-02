@@ -9,6 +9,7 @@ public class GameControllerScript : MonoBehaviour
     private float lastUpdate = 0.0f;
     public int karkit = 1000;
     public Text karkkiText;
+    public bool GameOver = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,5 +25,12 @@ public class GameControllerScript : MonoBehaviour
             lastUpdate = Time.time;
         }
         karkkiText.text = karkit.ToString();
+
+        if (karkit == 0){
+            GameOver = true;
+        }
     }
+
+    
+
 }
