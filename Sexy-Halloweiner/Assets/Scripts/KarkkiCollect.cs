@@ -1,56 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class KarkkiCollect : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public Sprite newSprite;
-    private int karkit = 20;
-    public Text karkkiText;
-    public int karkkiPerSec = 5;
-    bool poistaKarkki = true;
-    bool collectable = true;
+    public Sprite oldSprite;
+    public bool collectable = true;
+    public int respawnTime = 30;
+
+    
     // Start is called before the first frame update
     void Start()
     {
-        karkkiText.text = karkit.ToString(); 
+        GameObject gameController = GameObject.Find("GameController");
+        GameControllerScript controllScript = gameController.GetComponent<GameControllerScript>();
+        
+         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(poistaKarkki == true)
+        
+        /*if(poistaKarkki == true)
         {
             StartCoroutine(KarkkiHimo());
-        }
+            karkkiText.text = karkit.ToString();
+        }*/
     }
 
-    void CollectKarkki()
+    private int CollectKarkki()
     {
-        if(collectable == true)
-        {
-            spriteRenderer.sprite = newSprite;
-            karkit += 5;
-            karkkiText.text = karkit.ToString();
-            collectable = false;
-        }
+        GameObject gameController = GameObject.Find("GameController");
+        GameControllerScript controllScript = gameController.GetComponent<GameControllerScript>();
+        spriteRenderer.sprite = newSprite;
+        Debug.Log("+5 karkkia");
+        controllScript.karkit += 5;
+        collectable = false;
+        return controllScript.karkit;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Enter");
-        CollectKarkki();
+        if(collectable == true)
+        {
+            CollectKarkki();
+            StartCoroutine(RespawnKarkit());
+        }
     }
 
-    private IEnumerator KarkkiHimo()
+    private IEnumerator RespawnKarkit()
+    {
+        yield return new WaitForSeconds(respawnTime);
+        spriteRenderer.sprite = oldSprite;
+        collectable = true;
+    }
+    /*private IEnumerator KarkkiHimo()
     {
         poistaKarkki = false;
         Debug.Log("Tick! Tick! Tick!");
-        karkit -= 1;
-        karkkiText.text = (karkit).ToString();
         yield return new WaitForSeconds(karkkiPerSec);
+        karkit -= 1;
+        yield return karkit;
         poistaKarkki = true;
-    }
+    }*/
 }
