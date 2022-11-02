@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 2490837835
+    locked: 0
+  - name: Dirt_road
+    uniqueID: 2474461775
+    locked: 0
+  - name: road
+    uniqueID: 1490288413
+    locked: 0
+  - name: Object
+    uniqueID: 579609511
+    locked: 0
+  - name: Interface
+    uniqueID: 945363233
+    locked: 0
