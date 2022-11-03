@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuyItem : MonoBehaviour
 {
     public float upgradedMoveSpeed = 7.5f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class BuyItem : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         
         Debug.Log("Something entered buy zone!");
@@ -25,12 +26,12 @@ public class BuyItem : MonoBehaviour
         {
             Debug.Log("Player entered buy zone!");
             
-            /*if (Input.GetKeyDown(KeyCode.E) /*&& controllScript.karkit > 20)
+            if (Input.GetKeyDown(KeyCode.E) /*&& controllScript.karkit > 20)
             {
                 
-            }*/
+            }
         }
-    }
+    }*/
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -45,12 +46,12 @@ public class BuyItem : MonoBehaviour
             {
                 controllScript.karkit -= 20;
                 SpeedBoost();
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
             if(gameObject.CompareTag("ForceField") && controllScript.karkit > 40)
             {
                 Debug.Log("ForceField");
-                Destroy(gameObject);
+                gameObject.SetActive(false);
                 controllScript.karkit -= 40;
                 ForceField();
                 
@@ -70,5 +71,6 @@ public class BuyItem : MonoBehaviour
         GameObject PlayerFF = GameObject.Find("Player");
         ForceField forcefield = PlayerFF.GetComponent<ForceField>();
         forcefield.FFActive = true;
+        forcefield.circle.SetActive(true);
     }
 }

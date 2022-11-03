@@ -40,8 +40,11 @@ public class ForceField : MonoBehaviour
         enemyRB.constraints = RigidbodyConstraints2D.FreezePosition;
         Debug.Log("Enemy Frozen");
         FFActive = false;
-        /*circle.SetActive = false;*/
+        circle.SetActive(false);
         yield return new WaitForSeconds(5);
         enemyRB.constraints = RigidbodyConstraints2D.None;
+        yield return new WaitForSeconds(20);
+        FFActive = true;
+        circle.SetActive(true);
     }
 }
