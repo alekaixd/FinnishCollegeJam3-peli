@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BuyItem : MonoBehaviour
 {
     public float upgradedMoveSpeed = 7.5f;
-    
+    public TMP_Text PressE;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,25 +39,34 @@ public class BuyItem : MonoBehaviour
         GameObject gameController = GameObject.Find("GameController");
         GameControllerScript controllScript = gameController.GetComponent<GameControllerScript>();
         Debug.Log("player is in the buy zone");
-        if (Input.GetKey(KeyCode.Space)) 
+
+        //Text text = Text.GetComponent<GameControllerScript>();
+        PressE.text = "press E to buy";
+        if (Input.GetKey(KeyCode.E)) 
         {
             Debug.Log("Pressed E");
             
-            if(gameObject.CompareTag("SpeedBoost") && controllScript.karkit > 20)
+            if(gameObject.CompareTag("SpeedBoost") && controllScript.karkit > 50)
             {
                 controllScript.karkit -= 50;
                 SpeedBoost();
                 gameObject.SetActive(false);
+                PressE.text = "";
             }
-            if(gameObject.CompareTag("ForceField") && controllScript.karkit > 40)
+            if(gameObject.CompareTag("ForceField") && controllScript.karkit > 80)
             {
                 Debug.Log("ForceField");
                 gameObject.SetActive(false);
+                PressE.text = "";
                 controllScript.karkit -= 80;
                 ForceField();
                 
             }
         }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        PressE.text = "";
     }
 
     private void SpeedBoost()
