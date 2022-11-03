@@ -18,21 +18,13 @@ public class Damage : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
-        GameObject gameController = GameObject.Find("GameController");
-        GameControllerScript controllScript = gameController.GetComponent<GameControllerScript>();
-        
-        Debug.Log("Hit");
-        if(immunity == false)
+        if(other.gameObject.CompareTag("Player") && immunity == false)
         {
-            Debug.Log("damage taken");
-            controllScript.karkit -= 5;
+            GameObject ControllScript = GameObject.Find("GameController");
+            ControllScript.gameObject.GetComponent<GameControllerScript>().karkit -= 10;
             StartCoroutine(ImmunityFrames());
-        }
-        else
-        {
-            Debug.Log("Immune");
         }
     }
 

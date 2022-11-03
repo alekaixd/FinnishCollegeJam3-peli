@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameControllerScript : MonoBehaviour
 {
     private float lastUpdate = 0.0f;
-    public int karkit = 1000;
+    public int karkit = 25;
     public Text karkkiText;
     public bool GameOver = false;
     // Start is called before the first frame update
