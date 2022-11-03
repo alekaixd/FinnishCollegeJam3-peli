@@ -44,7 +44,7 @@ public class BuyItem : MonoBehaviour
             
             if(gameObject.CompareTag("SpeedBoost") && controllScript.karkit > 20)
             {
-                controllScript.karkit -= 20;
+                controllScript.karkit -= 50;
                 SpeedBoost();
                 gameObject.SetActive(false);
             }
@@ -52,7 +52,7 @@ public class BuyItem : MonoBehaviour
             {
                 Debug.Log("ForceField");
                 gameObject.SetActive(false);
-                controllScript.karkit -= 40;
+                controllScript.karkit -= 80;
                 ForceField();
                 
             }
