@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameControllerScript : MonoBehaviour
 {
@@ -26,8 +27,9 @@ public class GameControllerScript : MonoBehaviour
         }
         karkkiText.text = karkit.ToString();
 
-        if (karkit == 0){
+        if (karkit <= 0){
             GameOver = true;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
