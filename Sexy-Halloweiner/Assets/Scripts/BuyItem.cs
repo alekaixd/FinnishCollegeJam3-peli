@@ -47,12 +47,13 @@ public class BuyItem : MonoBehaviour
                 SpeedBoost();
                 Destroy(gameObject);
             }
-            else if(gameObject.CompareTag("ForceField") && controllScript.karkit > 40)
+            if(gameObject.CompareTag("ForceField") && controllScript.karkit > 40)
             {
                 Debug.Log("ForceField");
+                Destroy(gameObject);
                 controllScript.karkit -= 40;
                 ForceField();
-                Destroy(gameObject);
+                
             }
         }
     }
@@ -66,6 +67,8 @@ public class BuyItem : MonoBehaviour
 
     private void ForceField()
     {
-        
+        GameObject PlayerFF = GameObject.Find("Player");
+        ForceField forcefield = PlayerFF.GetComponent<ForceField>();
+        forcefield.FFActive = true;
     }
 }
