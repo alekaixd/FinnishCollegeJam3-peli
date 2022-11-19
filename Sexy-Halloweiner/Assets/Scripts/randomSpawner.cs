@@ -22,7 +22,7 @@ public class randomSpawner : MonoBehaviour
         {
             int randEnemy = Random.Range(0, EnemyPrefabs.Length);
             int randSpawnPoint = Random.Range(0, spawnPoints.Length);
-
+            
             Instantiate(EnemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
 
         }*/
@@ -33,7 +33,7 @@ public class randomSpawner : MonoBehaviour
     {
         while(spawnEnemies == true)
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(5);
             int randEnemy = Random.Range(0, EnemyPrefabs.Length);
             int randSpawnPoint = Random.Range(0, spawnPoints.Length);
             Instantiate(EnemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
