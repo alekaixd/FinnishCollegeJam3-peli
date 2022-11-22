@@ -9,6 +9,7 @@ public class randomSpawner : MonoBehaviour
     public GameObject[] EnemyPrefabs;
     public bool spawnEnemies = true;
     public int spawnCount = 0;
+    private int prefabVariationIndicator = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,7 @@ public class randomSpawner : MonoBehaviour
         }*/
 
     }
-
+    /*
     private IEnumerator SpawnZombie()
     {
         while(spawnEnemies == true)
@@ -38,6 +39,30 @@ public class randomSpawner : MonoBehaviour
             int randSpawnPoint = Random.Range(0, spawnPoints.Length);
             Instantiate(EnemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
             spawnCount += 1;
+        }
+        yield return null;
+    }*/
+
+    private IEnumerator SpawnZombie()
+    {
+        while (spawnEnemies == true)
+        {
+            yield return new WaitForSeconds(8);
+            int randEnemy;
+            if (prefabVariationIndicator <= 2)
+            {
+                randEnemy = 0;
+                Debug.Log("Spawning normal zombie");
+            }
+            else{
+                randEnemy = 1;
+                prefabVariationIndicator = 0;
+                Debug.Log("Spawning Blood Zombie");
+            }
+            int randSpawnPoint = Random.Range(0, spawnPoints.Length);
+            Instantiate(EnemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
+            spawnCount += 1;
+            prefabVariationIndicator += 1;
         }
         yield return null;
     }
