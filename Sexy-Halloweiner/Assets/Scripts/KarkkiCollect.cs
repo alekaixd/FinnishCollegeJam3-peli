@@ -11,6 +11,7 @@ public class KarkkiCollect : MonoBehaviour
     public Sprite oldSprite;
     public bool collectable = true;
     public int respawnTime = 30;
+    public AudioSource collectSound;
 
     
     // Start is called before the first frame update
@@ -42,7 +43,6 @@ public class KarkkiCollect : MonoBehaviour
         controllScript.karkit += 10;
         collectable = false;
         return controllScript.karkit;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,8 +50,19 @@ public class KarkkiCollect : MonoBehaviour
         Debug.Log("Enter");
         if(collectable == true)
         {
-            CollectKarkki();
-            StartCoroutine(RespawnKarkit());
+            try
+            {
+                collectSound.Play(0);
+                CollectKarkki();
+                StartCoroutine(RespawnKarkit());
+            }
+            catch
+            {
+                Debug.Log("error in try catch");
+                CollectKarkki();
+                StartCoroutine(RespawnKarkit());
+            }
+            
         }
     }
 
