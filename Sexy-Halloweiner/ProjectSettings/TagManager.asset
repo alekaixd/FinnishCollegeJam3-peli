@@ -50,6 +50,9 @@ TagManager:
   - name: Dirt_road
     uniqueID: 2474461775
     locked: 0
+  - name: Details
+    uniqueID: 162330165
+    locked: 0
   - name: road
     uniqueID: 1490288413
     locked: 0
