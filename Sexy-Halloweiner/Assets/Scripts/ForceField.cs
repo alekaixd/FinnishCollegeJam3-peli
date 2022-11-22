@@ -6,20 +6,6 @@ public class ForceField : MonoBehaviour
 {
     public bool FFActive = false;
     public GameObject circle;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (FFActive == true)
-        {
-            
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -35,7 +21,7 @@ public class ForceField : MonoBehaviour
 
     private IEnumerator FreezeEnemy(GameObject circle)
     {
-        GameObject EnemyRB = GameObject.FindGameObjectWithTag("Enemy");
+        GameObject EnemyRB = GameObject.FindWithTag("Enemy");
         Rigidbody2D enemyRB = EnemyRB.GetComponent<Rigidbody2D>();
         enemyRB.constraints = RigidbodyConstraints2D.FreezePosition;
         Debug.Log("Enemy Frozen");
@@ -45,6 +31,7 @@ public class ForceField : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         enemyRB.constraints = RigidbodyConstraints2D.None;
+        enemyRB.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         yield return new WaitForSeconds(20);
 
