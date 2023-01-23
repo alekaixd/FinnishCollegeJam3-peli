@@ -7,6 +7,7 @@ public class BuyItem : MonoBehaviour
 {
     public float upgradedMoveSpeed = 7.5f;
     public TMP_Text PressE;
+    public AudioSource BuySFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,9 +43,10 @@ public class BuyItem : MonoBehaviour
 
         //Text text = Text.GetComponent<GameControllerScript>();
         PressE.text = "press E to buy";
-        if (Input.GetKey(KeyCode.E)) 
+        if (Input.GetKey(KeyCode.E) & other.gameObject.CompareTag("Player")) 
         {
             Debug.Log("Pressed E");
+            BuySFX.Play();
             
             if(gameObject.CompareTag("SpeedBoost") && controllScript.karkit > 50)
             {

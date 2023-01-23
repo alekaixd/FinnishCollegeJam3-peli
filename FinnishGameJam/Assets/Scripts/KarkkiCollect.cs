@@ -10,7 +10,7 @@ public class KarkkiCollect : MonoBehaviour
     public Sprite newSprite;
     public Sprite oldSprite;
     public bool collectable = true;
-    public int respawnTime = 30;
+    public int respawnTime = 45;
     public AudioSource collectSound;
 
     
@@ -40,7 +40,7 @@ public class KarkkiCollect : MonoBehaviour
         GameControllerScript controllScript = gameController.GetComponent<GameControllerScript>();
         spriteRenderer.sprite = newSprite;
         Debug.Log("+10 karkkia");
-        controllScript.karkit += 10;
+        controllScript.karkit += 15;
         collectable = false;
         return controllScript.karkit;
     }

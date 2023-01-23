@@ -23,7 +23,7 @@ public class Damage : MonoBehaviour
         if(other.gameObject.CompareTag("Player") && immunity == false)
         {
             GameObject ControllScript = GameObject.Find("GameController");
-            ControllScript.gameObject.GetComponent<GameControllerScript>().karkit -= 10;
+            ControllScript.gameObject.GetComponent<GameControllerScript>().karkit -= 50;
             StartCoroutine(ImmunityFrames());
         }
     }

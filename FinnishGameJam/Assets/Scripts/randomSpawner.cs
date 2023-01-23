@@ -47,7 +47,7 @@ public class randomSpawner : MonoBehaviour
     {
         while (spawnEnemies == true)
         {
-            yield return new WaitForSeconds(8);
+            yield return new WaitForSeconds(4);
             int randEnemy;
             if (prefabVariationIndicator <= 2)
             {
